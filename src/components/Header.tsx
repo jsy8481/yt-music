@@ -51,15 +51,17 @@ export default function Header({ children }: Props) {
   const [isScrolled, setIsScrolled] = useState(false);
   const headRef = useRef<HTMLElement>(null);
   useEffect(() => {
+    const currentHeadRef = headRef.current;
+
     function handleScroll() {
       const scrollValue = headRef?.current?.scrollTop;
       console.log(scrollValue);
       setIsScrolled(scrollValue !== 0);
     }
 
-    headRef.current?.addEventListener("scroll", handleScroll);
+    currentHeadRef?.addEventListener("scroll", handleScroll);
     return () => {
-      headRef.current?.removeEventListener("scroll", handleScroll);
+      currentHeadRef?.removeEventListener("scroll", handleScroll);
     };
   });
 
